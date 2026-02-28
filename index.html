@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { background: #000; color: #ff4d6d; text-align: center; font-family: sans-serif; height: 100vh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+        .kiss { font-size: 100px; animation: bounce 1s infinite; }
+        @keyframes bounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+        h1 { font-size: 3rem; text-shadow: 0 0 20px #ff4d6d; }
+        .heart { position: absolute; top: -10%; color: red; animation: fall linear infinite; }
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+        #btn { padding: 15px 30px; background: #ff4d6d; border: none; border-radius: 50px; color: #fff; font-size: 1.2rem; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div id="content" style="display:none;">
+        <div class="kiss">💏</div>
+        <h1>I LOVE YOU ❤️</h1>
+        <p>"Meri har dhadkan mein tum ho..."</p>
+    </div>
+    <button id="btn" onclick="start()">Click for Surprise 💖</button>
+    <audio id="mus" loop><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+    <script>
+        function start(){
+            document.getElementById('mus').play();
+            document.getElementById('btn').style.display='none';
+            document.getElementById('content').style.display='block';
+            setInterval(()=>{
+                const h = document.createElement('div'); h.className='heart'; h.innerHTML='❤️';
+                h.style.left=Math.random()*100+'vw'; h.style.animationDuration=Math.random()*3+2+'s';
+                document.body.appendChild(h); setTimeout(()=>h.remove(), 5000);
+            }, 300);
+        }
+    </script>
+</body>
+</html>
